@@ -9,23 +9,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #172033;
-    --muted: #5b6577;
-    --bg: #f7fbff;
-    --panel: #ffffff;
-    --line: #dbe8f4;
-    --navy: #14213d;
-    --cyan: #0ea5e9;
-    --teal: #14b8a6;
-    --lime: #84cc16;
-    --coral: #fb7185;
-    --amber: #f59e0b;
-    --violet: #8b5cf6;
-    --soft-cyan: #e0f7ff;
-    --soft-teal: #dcfdf5;
-    --soft-coral: #fff1f2;
-    --soft-amber: #fff7ed;
-    --shadow: 0 14px 35px rgba(20, 33, 61, 0.09);
+    --ink: #f4fff8;
+    --muted: #a4b8ad;
+    --bg: #020604;
+    --panel: rgba(5, 18, 12, 0.86);
+    --panel-strong: rgba(8, 28, 18, 0.94);
+    --line: rgba(42, 255, 139, 0.18);
+    --navy: #f7fff9;
+    --cyan: #22c55e;
+    --teal: #2aff8b;
+    --lime: #9cff6a;
+    --coral: #7dffbf;
+    --amber: #d4ff7d;
+    --violet: #65ffa8;
+    --soft-cyan: rgba(34, 197, 94, 0.14);
+    --soft-teal: rgba(42, 255, 139, 0.13);
+    --soft-coral: rgba(125, 255, 191, 0.13);
+    --soft-amber: rgba(212, 255, 125, 0.13);
+    --shadow: 0 18px 45px rgba(0, 255, 119, 0.1);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,9 +34,10 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at 8% 6%, rgba(14, 165, 233, 0.18), transparent 26rem),
-      radial-gradient(circle at 92% 16%, rgba(251, 113, 133, 0.14), transparent 24rem),
-      linear-gradient(180deg, #f8fcff 0%, #f3fbf7 52%, #fffaf2 100%);
+      radial-gradient(circle at 12% 0%, rgba(34, 197, 94, 0.18), transparent 24rem),
+      radial-gradient(circle at 88% 14%, rgba(42, 255, 139, 0.12), transparent 28rem),
+      radial-gradient(circle at 50% 100%, rgba(156, 255, 106, 0.08), transparent 30rem),
+      linear-gradient(180deg, #020604 0%, #031007 48%, #010302 100%);
     color: var(--ink);
     font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.65;
@@ -48,10 +50,30 @@
     inset: 0;
     z-index: -3;
     background-image:
-      linear-gradient(rgba(20, 33, 61, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20, 33, 61, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(42, 255, 139, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42, 255, 139, 0.09) 1px, transparent 1px);
     background-size: 46px 46px;
-    mask-image: linear-gradient(to bottom, #000, transparent 74%);
+    mask-image: linear-gradient(to bottom, #000, rgba(0,0,0,0.74), transparent 92%);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(42, 255, 139, 0.08) 50%, transparent 100%),
+      repeating-linear-gradient(180deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 6px);
+    background-size: 100% 34%, 100% 6px;
+    animation: cyberScan 7s linear infinite;
+    mix-blend-mode: screen;
+  }
+
+  @keyframes cyberScan {
+    0% { background-position: 0 -38vh, 0 0; opacity: 0.38; }
+    50% { opacity: 0.68; }
+    100% { background-position: 0 118vh, 0 0; opacity: 0.38; }
   }
 
   a { color: inherit; }
@@ -62,8 +84,27 @@
     width: 100%;
     height: 100%;
     z-index: -2;
-    opacity: 0.5;
+    opacity: 0.86;
     pointer-events: none;
+  }
+
+  .cyber-rain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.34;
+    background-image:
+      linear-gradient(180deg, transparent 0 35%, rgba(42,255,139,0.28) 50%, transparent 72%),
+      linear-gradient(90deg, transparent 0 12%, rgba(42,255,139,0.16) 13%, transparent 15% 42%, rgba(156,255,106,0.12) 43%, transparent 45% 100%);
+    background-size: 100% 260px, 180px 100%;
+    animation: matrixDrift 13s linear infinite;
+    mask-image: radial-gradient(circle at center, #000 0 62%, transparent 92%);
+  }
+
+  @keyframes matrixDrift {
+    from { background-position: 0 -260px, 0 0; }
+    to { background-position: 0 100vh, 180px 0; }
   }
 
   .wrap {
@@ -75,8 +116,8 @@
     position: sticky;
     top: 0;
     z-index: 20;
-    border-bottom: 1px solid rgba(219, 232, 244, 0.92);
-    background: rgba(247, 251, 255, 0.86);
+    border-bottom: 1px solid var(--line);
+    background: rgba(2, 6, 4, 0.86);
     backdrop-filter: blur(18px);
   }
 
@@ -92,7 +133,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--navy);
+    color: var(--ink);
     font-weight: 800;
     text-decoration: none;
     white-space: nowrap;
@@ -104,9 +145,9 @@
     display: grid;
     place-items: center;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--cyan), var(--teal));
-    color: #fff;
-    box-shadow: 0 10px 22px rgba(14, 165, 233, 0.25);
+    background: linear-gradient(135deg, #16a34a, var(--teal));
+    color: #041008;
+    box-shadow: 0 0 24px rgba(42, 255, 139, 0.44);
     font-family: "Space Grotesk", sans-serif;
     font-size: 14px;
   }
@@ -124,7 +165,7 @@
     min-height: 36px;
     padding: 0 12px;
     border-radius: 8px;
-    color: var(--muted);
+    color: rgba(244, 255, 248, 0.74);
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
@@ -132,8 +173,8 @@
   }
 
   .nav-links a:hover {
-    background: #fff;
-    color: var(--cyan);
+    background: rgba(42, 255, 139, 0.1);
+    color: var(--teal);
   }
 
   .hero {
@@ -153,7 +194,7 @@
     right: 0;
     bottom: 14px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(20, 33, 61, 0.18), transparent);
+    background: linear-gradient(90deg, transparent, rgba(42, 255, 139, 0.35), transparent);
   }
 
   .kicker {
@@ -162,10 +203,11 @@
     gap: 8px;
     min-height: 32px;
     padding: 0 12px;
-    border: 1px solid rgba(14, 165, 233, 0.24);
+    border: 1px solid rgba(42, 255, 139, 0.32);
     border-radius: 8px;
-    background: rgba(224, 247, 255, 0.78);
-    color: #0369a1;
+    background: rgba(6, 24, 14, 0.78);
+    color: var(--teal);
+    box-shadow: 0 0 28px rgba(42, 255, 139, 0.14);
     font-size: 13px;
     font-weight: 800;
   }
@@ -198,7 +240,7 @@
 
   h1 span {
     color: transparent;
-    background: linear-gradient(90deg, var(--cyan), var(--teal), var(--coral));
+    background: linear-gradient(90deg, var(--teal), #f4fff8, var(--lime));
     -webkit-background-clip: text;
     background-clip: text;
   }
@@ -234,23 +276,26 @@
 
   .btn:hover { transform: translateY(-2px); }
   .btn-primary {
-    background: var(--navy);
-    color: #fff;
-    box-shadow: 0 12px 24px rgba(20, 33, 61, 0.2);
+    background: var(--teal);
+    color: #021006;
+    box-shadow: 0 0 28px rgba(42, 255, 139, 0.25);
   }
-  .btn-primary:hover { background: #0f766e; }
+  .btn-primary:hover { background: var(--lime); }
   .btn-secondary {
-    border-color: rgba(20, 33, 61, 0.12);
-    background: rgba(255, 255, 255, 0.76);
-    color: var(--navy);
+    border-color: var(--line);
+    background: rgba(5, 18, 12, 0.78);
+    color: var(--ink);
   }
-  .btn-secondary:hover { box-shadow: var(--shadow); }
+  .btn-secondary:hover {
+    border-color: rgba(42, 255, 139, 0.5);
+    box-shadow: var(--shadow);
+  }
 
   .terminal {
     position: relative;
-    border: 1px solid rgba(20, 33, 61, 0.1);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(2, 8, 5, 0.86);
     box-shadow: var(--shadow);
     overflow: hidden;
   }
@@ -262,7 +307,7 @@
     min-height: 42px;
     padding: 0 16px;
     border-bottom: 1px solid var(--line);
-    background: rgba(248, 252, 255, 0.86);
+    background: rgba(6, 20, 12, 0.92);
   }
 
   .dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -274,7 +319,7 @@
   .command-line {
     display: flex;
     gap: 10px;
-    color: #0f766e;
+    color: var(--teal);
     font-family: "Space Grotesk", monospace;
     font-weight: 700;
     margin-bottom: 16px;
@@ -299,9 +344,9 @@
     align-items: start;
     min-height: 74px;
     padding: 14px;
-    border: 1px solid rgba(20, 33, 61, 0.09);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: linear-gradient(135deg, rgba(224, 247, 255, 0.65), rgba(255, 255, 255, 0.76));
+    background: linear-gradient(135deg, rgba(6, 24, 14, 0.88), rgba(3, 12, 7, 0.76));
   }
 
   .metric-icon {
@@ -310,8 +355,9 @@
     display: grid;
     place-items: center;
     border-radius: 8px;
-    background: #fff;
-    box-shadow: inset 0 0 0 1px rgba(20, 33, 61, 0.07);
+    background: rgba(42, 255, 139, 0.08);
+    color: var(--teal);
+    box-shadow: inset 0 0 0 1px var(--line), 0 0 16px rgba(42,255,139,0.1);
     font-size: 18px;
   }
 
@@ -370,9 +416,9 @@
   .timeline-item,
   .project,
   .education-item {
-    border: 1px solid rgba(20, 33, 61, 0.1);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.86);
+    background: var(--panel);
     box-shadow: var(--shadow);
   }
 
@@ -405,10 +451,10 @@
     margin-top: 18px;
     padding: 34px;
     border-radius: 8px;
-    border: 1px solid rgba(20, 33, 61, 0.1);
+    border: 1px solid var(--line);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(224, 247, 255, 0.52)),
-      linear-gradient(90deg, transparent 0 72%, rgba(220, 253, 245, 0.65));
+      linear-gradient(135deg, rgba(5, 18, 12, 0.95), rgba(7, 31, 18, 0.74)),
+      linear-gradient(90deg, transparent 0 72%, rgba(42, 255, 139, 0.08));
     box-shadow: var(--shadow);
     color: var(--muted);
     font-size: 17px;
@@ -436,7 +482,7 @@
     padding: 0 12px;
     border-radius: 8px;
     background: var(--soft-cyan);
-    color: #0369a1;
+    color: var(--teal);
     font-size: 13px;
     font-weight: 900;
   }
@@ -495,7 +541,7 @@
   .project:hover,
   .education-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 18px 42px rgba(20, 33, 61, 0.12);
+    box-shadow: 0 20px 52px rgba(42, 255, 139, 0.16);
   }
 
   .card h3 {
@@ -512,6 +558,8 @@
     place-items: center;
     border-radius: 8px;
     background: var(--soft-teal);
+    color: var(--teal);
+    border: 1px solid var(--line);
   }
 
   .tags {
@@ -526,10 +574,10 @@
     align-items: center;
     min-height: 28px;
     padding: 0 10px;
-    border: 1px solid rgba(20, 33, 61, 0.09);
+    border: 1px solid rgba(42, 255, 139, 0.2);
     border-radius: 8px;
-    background: #fff;
-    color: #536071;
+    background: rgba(2, 8, 5, 0.72);
+    color: rgba(244, 255, 248, 0.82);
     font-size: 12px;
     font-weight: 800;
   }
@@ -550,7 +598,7 @@
   .project-visual {
     position: relative;
     min-height: 150px;
-    background: #0f172a;
+    background: #020604;
     overflow: hidden;
   }
 
@@ -558,29 +606,31 @@
     content: "";
     position: absolute;
     inset: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(42, 255, 139, 0.28);
     border-radius: 8px;
   }
 
   .project-visual.ai {
     background:
-      radial-gradient(circle at 26% 24%, rgba(132, 204, 22, 0.78), transparent 18%),
-      radial-gradient(circle at 78% 38%, rgba(14, 165, 233, 0.9), transparent 22%),
-      linear-gradient(135deg, #0f172a, #115e59);
+      radial-gradient(circle at 26% 24%, rgba(156, 255, 106, 0.54), transparent 18%),
+      radial-gradient(circle at 78% 38%, rgba(42, 255, 139, 0.56), transparent 22%),
+      repeating-linear-gradient(180deg, rgba(42,255,139,0.08) 0 1px, transparent 1px 8px),
+      linear-gradient(135deg, #020604, #07351b);
   }
 
   .project-visual.network {
     background:
-      linear-gradient(90deg, rgba(255,255,255,0.14) 1px, transparent 1px),
-      linear-gradient(rgba(255,255,255,0.14) 1px, transparent 1px),
-      linear-gradient(135deg, #14213d, #0369a1 52%, #14b8a6);
+      linear-gradient(90deg, rgba(42,255,139,0.18) 1px, transparent 1px),
+      linear-gradient(rgba(42,255,139,0.18) 1px, transparent 1px),
+      radial-gradient(circle at 60% 40%, rgba(42,255,139,0.24), transparent 35%),
+      linear-gradient(135deg, #020604, #0b3a20 58%, #021006);
     background-size: 32px 32px, 32px 32px, auto;
   }
 
   .project-visual.schedule {
     background:
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0 1px, transparent 1px 56px),
-      linear-gradient(135deg, #7c2d12, #fb7185 55%, #f59e0b);
+      repeating-linear-gradient(90deg, rgba(42,255,139,0.16) 0 1px, transparent 1px 56px),
+      linear-gradient(135deg, #020604, #14532d 55%, #16310f);
   }
 
   .project-node {
@@ -588,8 +638,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 20px rgba(255,255,255,0.72);
+    background: var(--teal);
+    box-shadow: 0 0 22px rgba(42,255,139,0.9);
     animation: drift 5s ease-in-out infinite;
   }
 
@@ -620,21 +670,6 @@
     margin-top: 12px;
     color: var(--muted);
     font-size: 14px;
-  }
-
-  .project-link {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    min-height: 36px;
-    margin-top: 18px;
-    padding: 0 12px;
-    border-radius: 8px;
-    background: var(--soft-cyan);
-    color: #0369a1;
-    font-size: 13px;
-    font-weight: 900;
-    text-decoration: none;
   }
 
   .education-grid {
@@ -668,8 +703,8 @@
     padding: 78px 0;
     color: #fff;
     background:
-      linear-gradient(115deg, rgba(20,33,61,0.96), rgba(15,118,110,0.94)),
-      radial-gradient(circle at 16% 0%, rgba(251,113,133,0.44), transparent 30rem);
+      radial-gradient(circle at 12% 0%, rgba(42,255,139,0.16), transparent 30rem),
+      linear-gradient(115deg, rgba(2,6,4,0.98), rgba(6,28,14,0.96));
   }
 
   .contact .wrap {
@@ -697,15 +732,15 @@
   }
 
   .contact-actions .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(42, 255, 139, 0.08);
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--line);
   }
 
   footer {
     padding: 24px 0;
-    background: #101827;
-    color: rgba(255, 255, 255, 0.62);
+    background: #010302;
+    color: rgba(244, 255, 248, 0.62);
     font-size: 13px;
   }
 
@@ -773,6 +808,7 @@
 </head>
 <body>
 <canvas class="network-canvas" aria-hidden="true"></canvas>
+<div class="cyber-rain" aria-hidden="true"></div>
 
 <header class="topbar">
   <nav class="wrap" aria-label="Primary navigation">
@@ -809,8 +845,8 @@
       <div class="terminal-body">
         <div class="command-line"><span>$</span><span>show_profile --focus security</span><span class="cursor"></span></div>
         <div class="console-grid">
-          <div class="metric"><div class="metric-icon">🛡</div><div><strong>Enterprise IT Support</strong><span>SolarWinds ITSM, Microsoft 365, Active Directory, endpoint deployment, and SLA-focused troubleshooting.</span></div></div>
-          <div class="metric"><div class="metric-icon">☍</div><div><strong>Network Lab Builder</strong><span>GNS3, MikroTik, BGP, OSPF, DHCP relay, BIND9 DNS, KEA DHCP, DDNS, and packet analysis.</span></div></div>
+          <div class="metric"><div class="metric-icon">SEC</div><div><strong>Enterprise IT Support</strong><span>SolarWinds ITSM, Microsoft 365, Active Directory, endpoint deployment, and SLA-focused troubleshooting.</span></div></div>
+          <div class="metric"><div class="metric-icon">NET</div><div><strong>Network Lab Builder</strong><span>GNS3, MikroTik, BGP, OSPF, DHCP relay, BIND9 DNS, KEA DHCP, DDNS, and packet analysis.</span></div></div>
           <div class="metric"><div class="metric-icon">AI</div><div><strong>AI Agent Developer</strong><span>Built a 6-module job search agent using Python, Claude AI API, Anthropic API, and NLP workflows.</span></div></div>
         </div>
       </div>
@@ -892,10 +928,10 @@
       </div>
 
       <div class="skills-grid">
-        <article class="card reveal"><h3><span class="icon-box">⌘</span>Infrastructure</h3><div class="tags"><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">Group Policy</span><span class="tag">VMware</span><span class="tag">VirtualBox</span><span class="tag">macOS</span><span class="tag">Linux</span></div></article>
-        <article class="card reveal"><h3><span class="icon-box">☍</span>Networking</h3><div class="tags"><span class="tag">TCP/IP</span><span class="tag">BGP</span><span class="tag">OSPF</span><span class="tag">DNS</span><span class="tag">DHCP Relay</span><span class="tag">VPN</span><span class="tag">VLAN</span><span class="tag">NAT</span></div></article>
-        <article class="card reveal"><h3><span class="icon-box">◈</span>Security</h3><div class="tags"><span class="tag">Firewalls</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Access Control</span><span class="tag">Malware Remediation</span></div></article>
-        <article class="card reveal"><h3><span class="icon-box">☁</span>Cloud & Platforms</h3><div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Microsoft 365</span><span class="tag">Teams</span><span class="tag">SharePoint</span><span class="tag">Power BI</span><span class="tag">Power Automate</span></div></article>
+        <article class="card reveal"><h3><span class="icon-box">INF</span>Infrastructure</h3><div class="tags"><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">Group Policy</span><span class="tag">VMware</span><span class="tag">VirtualBox</span><span class="tag">macOS</span><span class="tag">Linux</span></div></article>
+        <article class="card reveal"><h3><span class="icon-box">NET</span>Networking</h3><div class="tags"><span class="tag">TCP/IP</span><span class="tag">BGP</span><span class="tag">OSPF</span><span class="tag">DNS</span><span class="tag">DHCP Relay</span><span class="tag">VPN</span><span class="tag">VLAN</span><span class="tag">NAT</span></div></article>
+        <article class="card reveal"><h3><span class="icon-box">SEC</span>Security</h3><div class="tags"><span class="tag">Firewalls</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Access Control</span><span class="tag">Malware Remediation</span></div></article>
+        <article class="card reveal"><h3><span class="icon-box">CLD</span>Cloud & Platforms</h3><div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Microsoft 365</span><span class="tag">Teams</span><span class="tag">SharePoint</span><span class="tag">Power BI</span><span class="tag">Power Automate</span></div></article>
         <article class="card reveal"><h3><span class="icon-box">{} </span>Scripting</h3><div class="tags"><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">Bash</span><span class="tag">SQL</span><span class="tag">PHP</span><span class="tag">HTML</span><span class="tag">Git</span></div></article>
         <article class="card reveal"><h3><span class="icon-box">AI</span>Automation</h3><div class="tags"><span class="tag">Claude AI API</span><span class="tag">Anthropic API</span><span class="tag">NLP Workflows</span><span class="tag">AI Agents</span><span class="tag">Process Documentation</span></div></article>
       </div>
@@ -920,7 +956,6 @@
             <h3>AI Job Search Agent</h3>
             <p>Designed and built a 6-module AI agent using Python, Claude AI API, Anthropic API, and NLP workflows. Modules include job filtering, cover letter generation, resume tailoring, interview prep, and application tracking. Reduced manual research time by 80%.</p>
             <div class="tags"><span class="tag">Python</span><span class="tag">AI Agents</span><span class="tag">API Integration</span><span class="tag">Automation</span></div>
-            <a class="project-link" href="https://hasan-wolf.github.io" target="_blank" rel="noreferrer">Visit Live Site</a>
           </div>
         </article>
 
@@ -984,7 +1019,7 @@
   <div class="wrap">
     <div>
       <div class="eyebrow">Contact</div>
-      <h2>Let’s build reliable, secure systems.</h2>
+      <h2>Let's build reliable, secure systems.</h2>
       <p>Open to IT support, network, cybersecurity, cloud, and automation opportunities. I am easy to reach by email or LinkedIn.</p>
     </div>
     <div class="contact-actions">
@@ -997,7 +1032,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Md Jahidul Hasan</span>
+    <span>&copy; 2026 Md Jahidul Hasan</span>
     <span>Computer Information Systems | Stevenson University | Maryland</span>
   </div>
 </footer>
@@ -1043,7 +1078,7 @@
         const dy = a.y - b.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < 128) {
-          ctx.strokeStyle = `rgba(14, 165, 233, ${0.18 * (1 - distance / 128)})`;
+          ctx.strokeStyle = `rgba(42, 255, 139, ${0.34 * (1 - distance / 128)})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -1054,10 +1089,13 @@
     }
 
     particles.forEach((p, index) => {
-      ctx.fillStyle = index % 5 === 0 ? "rgba(251,113,133,0.74)" : "rgba(20,184,166,0.7)";
+      ctx.shadowColor = "rgba(42,255,139,0.85)";
+      ctx.shadowBlur = index % 5 === 0 ? 16 : 9;
+      ctx.fillStyle = index % 5 === 0 ? "rgba(156,255,106,0.95)" : "rgba(42,255,139,0.82)";
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
+      ctx.shadowBlur = 0;
     });
 
     requestAnimationFrame(drawNetwork);
